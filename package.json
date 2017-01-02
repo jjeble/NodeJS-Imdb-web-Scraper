@@ -1,0 +1,16 @@
+{
+  "name": "node-web-scrape",
+  "version": "1.0.0",
+  "description": "Scrape the web",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "express": "latest",
+    "request": "latest",
+    "cheerio": "latest"
+  }
+}
