@@ -15,27 +15,29 @@ app.get('/scrape',function(req,res){
 
     var json = {title:"",release: "", rating: ""};
 
-    $('.header').filter(function(){
+    $('.title_wrapper').filter(function() {
+var data = $(this);
+title = data.children().first().text();
+release = data.children().last().children().last().text();
+});
 
-      var data = $(this);
+$('.ratingValue').filter(function() {
+var data = $(this);
 
-      title = data.children().first().text();
+rating = data.children().first().children().first().text();
+json.rating = rating;
+});
+
+    fs.writeFile('output.json',JSON.stringify(json,null,4), function(err){
+
+    console.log('File successfully written! - Check your project directory for the output.json file');
+
+})
+res.send('Check your console');
 
 
-      release = data.children().last().children().text();
-      json.title = title;
-      json.release = release;
-    })
 
-    $('.star-box-giga-star').filter(function(){
-      var data = $(this);
-
-      rating = data.text();
-      json.rating = rating;
-
-    })
-
-  })
+  });
 
 })
 
@@ -43,6 +45,6 @@ app.get('/scrape',function(req,res){
 
 app.listen('8081')
 
-consile.log('Eventually the scrpaing will happen on port 8081');
+console.log('Eventually the scrpaing will happen on port 8081');
 
 exports = module.exports = app;
