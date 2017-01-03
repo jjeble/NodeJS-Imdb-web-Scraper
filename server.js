@@ -9,16 +9,25 @@ app.get('/scrape',function(req,res){
   url ='http://www.imdb.com/title/tt1229340/';
   request(url, function(error,response,html){
     if(error) throw error;
-    var movie = cheerio.load(html);
+    var $ = cheerio.load(html);
 
     var title, release, rating;
 
-    var json {title:"",release: "", rating: ""};
+    var json = {title:"",release: "", rating: ""};
 
+    $('.header').filter(function(){
+
+      var data = $(this);
+
+      title = data.children().first().text();
+      json.title = title;
+    })
+
+  })
 
 })
 
-})
+
 
 app.listen('8081')
 
